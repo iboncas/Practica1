@@ -51,6 +51,46 @@ public class ListaDeReproduccion implements ListModel<String> {
 		return 0;
 	}
 	
+	/** Intercambia las dos posiciones (no hace nada si cualquiera de las posiciones es errónea)
+	 * @param posi1 Posición del primer elemento a cambiar
+	 * @param posi2 Posición del segundo elemento a cambiar
+	 */
+	public void intercambia(int posi1, int posi2) {
+		if(posi1 >= 0 && posi2 >= 0) {
+			File temp;
+			temp = ficherosLista.get(posi1);
+			ficherosLista.set(posi1, ficherosLista.get(posi2));
+			ficherosLista.set(posi2, temp);
+		}
+	}
+	
+	/** Devuelve el número de elementos de la lista
+	 * @return Tamaño de la lista de ficheros
+	 */
+	public int size() {
+		return ficherosLista.size();
+	}
+	
+	/** Añade un fichero al final de la lista
+	 * @param f Fichero que se va a añadir
+	 */
+	public void add(File f) {
+		ficherosLista.add(f);
+	}
+	
+	/** Elimina un fichero de la lista, dada su posición
+	 * @param posi Posición del fichero a eliminar
+	 */
+	public void removeFic(int posi) {
+		ficherosLista.remove(posi);
+	}
+	
+	/**
+	 *  Borra la lista
+	 */
+	public void clear() {
+		ficherosLista.clear();
+	}
 	
 	//
 	// Métodos de selección
