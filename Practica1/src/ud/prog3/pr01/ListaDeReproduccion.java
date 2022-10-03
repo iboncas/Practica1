@@ -2,6 +2,8 @@ package ud.prog3.pr01;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
+
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
 import javax.swing.event.ListDataListener;
@@ -47,8 +49,9 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public int add(String carpetaFicheros, String filtroFicheros) {
 		// TODO: Codificar este método de acuerdo a la práctica (pasos 3 y sucesivos)
+		int añadidos = 0;
 		filtroFicheros = filtroFicheros.replaceAll( "\\.", "\\\\." );  // Pone el símbolo de la expresión regular \. donde figure un .
-		return 0;
+		filtroFicheros = filtroFicheros.replaceAll("\\*", ".*");	// Pone el símbolo de la expresión regular .* donde figure un *
 	}
 	
 	/** Intercambia las dos posiciones (no hace nada si cualquiera de las posiciones es errónea)
@@ -148,6 +151,8 @@ public class ListaDeReproduccion implements ListModel<String> {
 	public int getFicSeleccionado() {
 		return ficheroEnCurso;
 	}
+	
+	
 
 	//
 	// Métodos de DefaultListModel
@@ -174,6 +179,8 @@ public class ListaDeReproduccion implements ListModel<String> {
 	public void removeListDataListener(ListDataListener l) {
 		misEscuchadores.remove( l );
 	}
+	
+	
 	
 	// Llamar a este método cuando se añada un elemento a la lista
 	// (Utilizado para avisar a los escuchadores de cambio de datos de la lista)

@@ -35,6 +35,11 @@ public class VideoPlayer extends JFrame {
 	private ListaDeReproduccion listaRepVideos;  // Modelo para la lista de vídeos
 
 	public VideoPlayer() {
+		this.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent e) {
+				System.exit(0);
+			}
+		});
 		// Creación de datos asociados a la ventana (lista de reproducción)
 		listaRepVideos = new ListaDeReproduccion();
 		
@@ -55,9 +60,9 @@ public class VideoPlayer extends JFrame {
 
 		// Configuración de componentes/contenedores
 		setTitle("Video Player - Deusto Ingeniería");
+		setSize( 800, 600 );
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
-		setSize( 800, 600 );
 		lCanciones.setPreferredSize( new Dimension( 200,  500 ) );
 		pBotonera.setLayout( new FlowLayout( FlowLayout.LEFT ));
 		
