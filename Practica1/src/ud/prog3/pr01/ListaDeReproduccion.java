@@ -52,6 +52,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 		int añadidos = 0;
 		filtroFicheros = filtroFicheros.replaceAll( "\\.", "\\\\." );  // Pone el símbolo de la expresión regular \. donde figure un .
 		filtroFicheros = filtroFicheros.replaceAll("\\*", ".*");	// Pone el símbolo de la expresión regular .* donde figure un *
+		return añadidos;
 	}
 	
 	/** Intercambia las dos posiciones (no hace nada si cualquiera de las posiciones es errónea)
