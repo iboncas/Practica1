@@ -1,8 +1,13 @@
 package ud.prog3.pr01;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.FileHandler;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import java.util.regex.Pattern;
+import java.util.regex.PatternSyntaxException;
 
 import javax.swing.ListModel;
 import javax.swing.event.ListDataEvent;
@@ -18,6 +23,16 @@ import javax.swing.event.ListDataListener;
 public class ListaDeReproduccion implements ListModel<String> {
 	ArrayList<File> ficherosLista;     // ficheros de la lista de reproducción
 	int ficheroEnCurso = -1;           // Fichero seleccionado (-1 si no hay ninguno seleccionado)
+	private static Logger logger = Logger.getLogger(ListaDeReproduccion.class.getName());
+	private static final boolean ANYADIR_A_FIC_LOG = false;
+	static {
+		try {
+			logger.addHandler(new FileHandler(
+					ListaDeReproduccion.class.getName()+".log.xml", ANYADIR_A_FIC_LOG));
+		} catch(SecurityException | IOException ex){
+			logger.log(Level.SEVERE, "Error en creación fichero log");
+		}
+	}
 
 	/** Constructor de lista de reproducción, crea una lista vacía
 	 */
@@ -50,9 +65,28 @@ public class ListaDeReproduccion implements ListModel<String> {
 	public int add(String carpetaFicheros, String filtroFicheros) {
 		// TODO: Codificar este método de acuerdo a la práctica (pasos 3 y sucesivos)
 		int añadidos = 0;
+		logger.log(Level.INFO, "Añadiendo ficheros con filtro " + filtroFicheros);
+		try {
 		filtroFicheros = filtroFicheros.replaceAll( "\\.", "\\\\." );  // Pone el símbolo de la expresión regular \. donde figure un .
 		filtroFicheros = filtroFicheros.replaceAll("\\*", ".*");	// Pone el símbolo de la expresión regular .* donde figure un *
+		logger.log(Level.INFO, "Ficheros con filtro " + filtroFicheros);
+		File fInic = new File(carpetaFicheros);
+		Pattern pat = Pattern.compile(filtroFicheros, 2);
+		if(fInic.isDirectory()) {
+			for(File f:fInic.listFiles()) {
+				logger.log(Level.FINE, "Procesando fichero " + f.getName());
+				if(pat.matcher(f.getName()).matches()) {
+					añadidos++;
+					ficherosLista.add(f);
+					logger.log(Level.INFO, "Fichero añadido: " + f.getName());
+				}
+			}
+		}
+		}catch(PatternSyntaxException ex) {
+			ListaDeReproduccion.logger.log(Level.SEVERE, "Error en patrón");
+		}
 		return añadidos;
+		
 	}
 	
 	/** Intercambia las dos posiciones (no hace nada si cualquiera de las posiciones es errónea)
