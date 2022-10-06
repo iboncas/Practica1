@@ -217,13 +217,13 @@ public class VideoPlayer extends JFrame {
 		// Inicializar VLC.
 		// Probar con el buscador nativo...
 		boolean found = new NativeDiscovery().discover();
-    	// System.out.println( LibVlc.INSTANCE.libvlc_get_version() );  // Visualiza versión de VLC encontrada
+    	//System.out.println( LibVlc.libvlc_get_version() );  // Visualiza versión de VLC encontrada
     	// Si no se encuentra probar otras opciones:
     	if (!found) {
 			// Buscar vlc como variable de entorno
-			String vlcPath = System.getenv().get( "vlc" );
+    		String vlcPath = System.getenv().get( "vlc" );
 			if (vlcPath==null) {  // Poner VLC a mano
-	        	System.setProperty("jna.library.path", "c:\\Program Files\\videolan\\VLC");
+	        	System.setProperty("jna.library.path", "C:\\Program Files\\VideoLAN\\VLC\\vlc.exe");
 			} else {  // Poner VLC desde la variable de entorno
 				System.setProperty( "jna.library.path", vlcPath );
 			}
@@ -234,8 +234,6 @@ public class VideoPlayer extends JFrame {
 			@Override
 			public void run() {
 				miVentana = new VideoPlayer();
-				// Descomentar esta línea y poner una ruta válida para ver un vídeo de ejemplo
-				miVentana.listaRepVideos.ficherosLista.add( new File("E:/media/videos/Música/Official_Video_Daft_Punk_-_Pentatonix.mp4") );				
 				miVentana.setVisible( true );
 				miVentana.listaRepVideos.add( path, ficheros );
 				miVentana.listaRepVideos.irAPrimero();

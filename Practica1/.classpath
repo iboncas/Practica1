@@ -7,7 +7,7 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/castr/OneDrive - Universidad de Deusto/Escritorio/Prog III/LIBRERIAS/vlcj-4.7.1/vlcj-4.7.1.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/castr/OneDrive - Universidad de Deusto/Escritorio/Prog III/LIBRERIAS/vlcj-4.7.1/vlcj-4.7.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

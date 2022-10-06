@@ -114,6 +114,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public void add(File f) {
 		ficherosLista.add(f);
+		this.avisarAnyadido(this.ficherosLista.size() - 1);
 	}
 	
 	/** Elimina un fichero de la lista, dada su posición

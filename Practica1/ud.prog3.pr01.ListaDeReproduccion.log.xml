@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2022-10-06T14:55:03.704237600Z</date>
+  <millis>1665068103704</millis>
+  <nanos>237600</nanos>
+  <sequence>0</sequence>
+  <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
+  <level>INFO</level>
+  <class>ud.prog3.pr01.ListaDeReproduccion</class>
+  <method>add</method>
+  <thread>20</thread>
+  <message>Añadiendo ficheros con filtro *Pentatonix*.mp4</message>
+</record>
+<record>
+  <date>2022-10-06T14:55:03.738114300Z</date>
+  <millis>1665068103738</millis>
+  <nanos>114300</nanos>
+  <sequence>1</sequence>
+  <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
+  <level>INFO</level>
+  <class>ud.prog3.pr01.ListaDeReproduccion</class>
+  <method>add</method>
+  <thread>20</thread>
+  <message>Ficheros con filtro .*Pentatonix.*\.mp4</message>
+</record>
+<record>
+  <date>2022-10-06T14:55:03.741205300Z</date>
+  <millis>1665068103741</millis>
+  <nanos>205300</nanos>
+  <sequence>2</sequence>
+  <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
+  <level>INFO</level>
+  <class>ud.prog3.pr01.ListaDeReproduccion</class>
+  <method>add</method>
+  <thread>20</thread>
+  <message>Fichero añadido: [Official Video] Daft Punk - Pentatonix.mp4</message>
+</record>
+<record>
+  <date>2022-10-06T14:55:03.742204300Z</date>
+  <millis>1665068103742</millis>
+  <nanos>204300</nanos>
+  <sequence>3</sequence>
+  <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
+  <level>INFO</level>
+  <class>ud.prog3.pr01.ListaDeReproduccion</class>
+  <method>add</method>
+  <thread>20</thread>
+  <message>Fichero añadido: [Official Video] I Need Your Love - Pentatonix (Calvin Harris feat. Ellie Goulding Cover).mp4</message>
+</record>
+</log>
