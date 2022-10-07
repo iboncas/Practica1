@@ -22,6 +22,7 @@ import javax.swing.event.ListDataListener;
  */
 public class ListaDeReproduccion implements ListModel<String> {
 	ArrayList<File> ficherosLista;     // ficheros de la lista de reproducción
+	ArrayList<Boolean> ficherosErroneos = new ArrayList<>();	// arraylist de ficheros erroneos para comparar posición con la lista real(falso = erroneos)
 	int ficheroEnCurso = -1;           // Fichero seleccionado (-1 si no hay ninguno seleccionado)
 	private static Logger logger = Logger.getLogger(ListaDeReproduccion.class.getName());
 	private static final boolean ANYADIR_A_FIC_LOG = false;
@@ -78,6 +79,11 @@ public class ListaDeReproduccion implements ListModel<String> {
 				if(pat.matcher(f.getName()).matches()) {
 					añadidos++;
 					ficherosLista.add(f);
+					if(f.getName().contains("Fichero erroneo")) {
+						ficherosErroneos.add(true);
+					}else {
+						ficherosErroneos.add(false);
+					}
 					logger.log(Level.INFO, "Fichero añadido: " + f.getName());
 				}
 			}
@@ -86,7 +92,6 @@ public class ListaDeReproduccion implements ListModel<String> {
 			ListaDeReproduccion.logger.log(Level.SEVERE, "Error en patrón");
 		}
 		return añadidos;
-		
 	}
 	
 	/** Intercambia las dos posiciones (no hace nada si cualquiera de las posiciones es errónea)
@@ -95,10 +100,12 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public void intercambia(int posi1, int posi2) {
 		if(posi1 >= 0 && posi2 >= 0) {
-			File temp;
-			temp = ficherosLista.get(posi1);
+			File temp = ficherosLista.get(posi1);
 			ficherosLista.set(posi1, ficherosLista.get(posi2));
 			ficherosLista.set(posi2, temp);
+			boolean tempEr = ficherosErroneos.get(posi1);
+			ficherosErroneos.set(posi1, ficherosErroneos.get(posi2));
+			ficherosErroneos.set(posi2, tempEr);
 		}
 	}
 	
@@ -122,6 +129,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public void removeFic(int posi) {
 		ficherosLista.remove(posi);
+		ficherosErroneos.remove(posi);
 	}
 	
 	/**
@@ -129,6 +137,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public void clear() {
 		ficherosLista.clear();
+		ficherosErroneos.clear();
 	}
 	
 	//
@@ -139,7 +148,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 * @return	true si la selección es correcta, false si hay error y no se puede seleccionar
 	 */
 	public boolean irAPrimero() {
-		ficheroEnCurso = 0;  // Inicia
+		for(ficheroEnCurso = 0;ficheroEnCurso < ficherosLista.size()-1 && ficherosErroneos.get(ficheroEnCurso); ficheroEnCurso++)
 		if (ficheroEnCurso>=ficherosLista.size()) {
 			ficheroEnCurso = -1;  // Si no se encuentra, no hay selección
 			return false;  // Y devuelve error
@@ -151,6 +160,7 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 * @return	true si la selección es correcta, false si hay error y no se puede seleccionar
 	 */
 	public boolean irAUltimo() {
+		for(ficheroEnCurso = ficherosLista.size()-1;ficheroEnCurso >= 0 && ficherosErroneos.get(ficheroEnCurso); ficheroEnCurso--)
 		ficheroEnCurso = ficherosLista.size()-1;  // Inicia al final
 		if (ficheroEnCurso==-1) {  // Si no se encuentra, no hay selección
 			return false;  // Y devuelve error
@@ -163,6 +173,9 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public boolean irAAnterior() {
 		if (ficheroEnCurso>=0) ficheroEnCurso--;
+		while(ficheroEnCurso >= 0 && ficherosErroneos.get(ficheroEnCurso)) {
+			ficheroEnCurso--;
+		}
 		if (ficheroEnCurso==-1) {  // Si no se encuentra, no hay selección
 			return false;  // Y devuelve error
 		}
@@ -174,6 +187,9 @@ public class ListaDeReproduccion implements ListModel<String> {
 	 */
 	public boolean irASiguiente() {
 		ficheroEnCurso++;
+		while(ficheroEnCurso < ficherosLista.size() && ficherosErroneos.get(ficheroEnCurso)) {
+			ficheroEnCurso++;
+		}
 		if (ficheroEnCurso>=ficherosLista.size()) {
 			ficheroEnCurso = -1;  // Si no se encuentra, no hay selección
 			return false;  // Y devuelve error
@@ -187,8 +203,6 @@ public class ListaDeReproduccion implements ListModel<String> {
 	public int getFicSeleccionado() {
 		return ficheroEnCurso;
 	}
-	
-	
 
 	//
 	// Métodos de DefaultListModel

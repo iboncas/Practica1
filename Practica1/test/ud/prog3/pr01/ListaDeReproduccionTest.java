@@ -42,6 +42,37 @@ public class ListaDeReproduccionTest {
 		assertEquals(lr.getElementAt(1), "[Official Video] Daft Punk - Pentatonix.mp4");
 		assertEquals(lr.getElementAt(2), "[Official Video] I Need Your Love - Pentatonix (Calvin Harris feat. Ellie Goulding Cover).mp4");
 	}
+	@Test
+	public void intercambia() {
+		String carpetaTest = "test/res/";
+		String filtroTest = "*Pentatonix*.mp4";
+		ListaDeReproduccion lr = new ListaDeReproduccion();
+		lr.add(carpetaTest, filtroTest);
+		lr.intercambia(0, 1);
+		assertEquals(lr.getElementAt(0), "[Official Video] Daft Punk - Pentatonix.mp4");
+		assertEquals(lr.getElementAt(1), "Fichero erroneo Pentatonix.mp4");
+	}
+	
+	@Test
+	public void removeFic() {
+		String carpetaTest = "test/res/";
+		String filtroTest = "*Pentatonix*.mp4";
+		ListaDeReproduccion lr = new ListaDeReproduccion();
+		lr.add(carpetaTest, filtroTest);
+		assertEquals(lr.getElementAt(1), "[Official Video] Daft Punk - Pentatonix.mp4");
+		lr.removeFic(0);
+		assertEquals(lr.getElementAt(0), "[Official Video] Daft Punk - Pentatonix.mp4");
+	}
+	
+	@Test
+	public void add() {
+		String carpetaTest = "test/res/";
+		String filtroTest = "*Pentatonix*.mp4";
+		ListaDeReproduccion lr = new ListaDeReproduccion();
+		lr.add(carpetaTest, filtroTest);
+		lr.add(new File("test/res/No del grupo.mp4"));
+		assertEquals(lr.getElementAt(3), "No del grupo.mp4");
+	}
 	
 	@After
 	public void tearDown() {
