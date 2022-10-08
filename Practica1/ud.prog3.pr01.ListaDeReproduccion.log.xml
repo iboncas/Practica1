@@ -2,75 +2,75 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2022-10-08T13:38:55.728387800Z</date>
-  <millis>1665236335728</millis>
-  <nanos>387800</nanos>
+  <date>2022-10-08T13:57:01.418210600Z</date>
+  <millis>1665237421418</millis>
+  <nanos>210600</nanos>
   <sequence>0</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>21</thread>
+  <thread>20</thread>
   <message>Añadiendo ficheros con filtro *Pentatonix*.mp4</message>
 </record>
 <record>
-  <date>2022-10-08T13:38:55.759887100Z</date>
-  <millis>1665236335759</millis>
-  <nanos>887100</nanos>
+  <date>2022-10-08T13:57:01.440996500Z</date>
+  <millis>1665237421440</millis>
+  <nanos>996500</nanos>
   <sequence>1</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>21</thread>
+  <thread>20</thread>
   <message>Ficheros con filtro .*Pentatonix.*\.mp4</message>
 </record>
 <record>
-  <date>2022-10-08T13:38:55.762083800Z</date>
-  <millis>1665236335762</millis>
-  <nanos>83800</nanos>
+  <date>2022-10-08T13:57:01.443184600Z</date>
+  <millis>1665237421443</millis>
+  <nanos>184600</nanos>
   <sequence>2</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>21</thread>
+  <thread>20</thread>
   <message>Fichero añadido: Fichero erroneo Pentatonix.mp4</message>
 </record>
 <record>
-  <date>2022-10-08T13:38:55.764364800Z</date>
-  <millis>1665236335764</millis>
-  <nanos>364800</nanos>
+  <date>2022-10-08T13:57:01.444338600Z</date>
+  <millis>1665237421444</millis>
+  <nanos>338600</nanos>
   <sequence>3</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>21</thread>
+  <thread>20</thread>
   <message>Fichero añadido: [Official Video] Daft Punk - Pentatonix.mp4</message>
 </record>
 <record>
-  <date>2022-10-08T13:38:55.765352600Z</date>
-  <millis>1665236335765</millis>
-  <nanos>352600</nanos>
+  <date>2022-10-08T13:57:01.445335700Z</date>
+  <millis>1665237421445</millis>
+  <nanos>335700</nanos>
   <sequence>4</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>21</thread>
+  <thread>20</thread>
   <message>Fichero añadido: [Official Video] I Need Your Love - Pentatonix (Calvin Harris feat. Ellie Goulding Cover).mp4</message>
 </record>
 <record>
-  <date>2022-10-08T13:38:55.766779Z</date>
-  <millis>1665236335766</millis>
-  <nanos>779000</nanos>
+  <date>2022-10-08T13:57:01.446773500Z</date>
+  <millis>1665237421446</millis>
+  <nanos>773500</nanos>
   <sequence>5</sequence>
   <logger>ud.prog3.pr01.ListaDeReproduccion</logger>
   <level>INFO</level>
   <class>ud.prog3.pr01.ListaDeReproduccion</class>
   <method>add</method>
-  <thread>21</thread>
+  <thread>20</thread>
   <message>Fichero añadido: [Official Video] The Sound of Silence - Pentatonix.mp4</message>
 </record>
 </log>

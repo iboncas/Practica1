@@ -6,6 +6,9 @@ import java.awt.event.*;
 import javax.swing.*;
 
 import java.io.File;
+import java.text.DateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 import uk.co.caprica.vlcj.factory.discovery.NativeDiscovery;
 import uk.co.caprica.vlcj.player.base.MediaPlayer;
@@ -33,6 +36,7 @@ public class VideoPlayer extends JFrame {
 	private JLabel lMensaje = null;           // Label para mensaje de reproducción
 	// Datos asociados a la ventana
 	private ListaDeReproduccion listaRepVideos;  // Modelo para la lista de vídeos
+	private DateFormat formato = DateFormat.getDateInstance(3, Locale.getDefault());
 
 	public VideoPlayer() {
 		this.addWindowListener(new WindowAdapter() {
@@ -59,7 +63,7 @@ public class VideoPlayer extends JFrame {
         mediaPlayerComponent = new EmbeddedMediaPlayerComponent();
 
 		// Configuración de componentes/contenedores
-		setTitle("Video Player - Deusto Ingeniería");
+        setTitle("Video Player - Deusto Ingeniería");
 		setSize( 800, 600 );
 		setLocationRelativeTo( null );  // Centra la ventana en la pantalla
 		setDefaultCloseOperation( JFrame.DISPOSE_ON_CLOSE );
@@ -180,7 +184,8 @@ public class VideoPlayer extends JFrame {
 		if (mediaPlayerComponent.mediaPlayer()!=null)
 			mediaPlayerComponent.mediaPlayer().controls().stop();
 	}
-
+	
+	
 	// Empieza a reproducir el vídeo en curso de la lista de reproducción
 	private void lanzaVideo() {
 		if (mediaPlayerComponent.mediaPlayer()!=null &&
@@ -188,6 +193,9 @@ public class VideoPlayer extends JFrame {
 			File ficVideo = listaRepVideos.getFic(listaRepVideos.getFicSeleccionado());
 			mediaPlayerComponent.mediaPlayer().media().play(  
 				ficVideo.getAbsolutePath() );
+			Date fecha = new Date(ficVideo.lastModified());
+			lMensaje.setText("Fecha: " + formato.format(fecha));
+			lMensaje.repaint();
 			lCanciones.setSelectedIndex( listaRepVideos.getFicSeleccionado() );
 		} else {
 			lCanciones.setSelectedIndices( new int[] {} );
@@ -197,7 +205,7 @@ public class VideoPlayer extends JFrame {
 	// Pide interactivamente una carpeta para coger vídeos
 	// (null si no se selecciona)
 	private static File pedirCarpeta() {
-		JFileChooser chooser = new JFileChooser();
+		JFileChooser chooser = new JFileChooser(new File("test/"));
 		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
 		int ret = chooser.showOpenDialog(null);
 		if(ret == 0) {
