@@ -3,6 +3,7 @@ package ud.prog3.pr01;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.logging.FileHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -194,6 +195,28 @@ public class ListaDeReproduccion implements ListModel<String> {
 			ficheroEnCurso = -1;  // Si no se encuentra, no hay selección
 			return false;  // Y devuelve error
 		}
+		return true;
+	}
+	
+	/** Selecciona un fichero aleatorio de la lista de reproducción
+	 * @return true si la selección es correcta, false si hay error y no se puede seleccionar
+	 */
+	public boolean irARandom() {
+		if(ficheroEnCurso>=ficherosLista.size()) {
+			ficheroEnCurso = -1;
+			return false;
+		}
+		Random random = new Random();
+		int index = random.nextInt(ficherosLista.size());
+		while(ficheroEnCurso == index) {
+			index = random.nextInt(ficherosLista.size());
+		}
+		if(ficherosErroneos.get(index)) {
+			while(ficherosErroneos.get(index)) {
+				index++;
+			}
+		}
+		ficheroEnCurso = index;
 		return true;
 	}
 

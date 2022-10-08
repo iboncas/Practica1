@@ -96,7 +96,11 @@ public class VideoPlayer extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				paraVideo();
-				listaRepVideos.irAAnterior();
+				if(cbAleatorio.isSelected()) {
+					listaRepVideos.irARandom();
+				}else {
+					listaRepVideos.irAAnterior();
+				}
 				lanzaVideo();
 			}
 		});
@@ -104,7 +108,11 @@ public class VideoPlayer extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				paraVideo();
-				listaRepVideos.irASiguiente();
+				if(cbAleatorio.isSelected()) {
+					listaRepVideos.irARandom();
+				}else {
+					listaRepVideos.irASiguiente();
+				}
 				lanzaVideo();
 			}
 		});
