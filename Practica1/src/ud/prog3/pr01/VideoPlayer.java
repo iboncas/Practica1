@@ -197,8 +197,14 @@ public class VideoPlayer extends JFrame {
 	// Pide interactivamente una carpeta para coger vídeos
 	// (null si no se selecciona)
 	private static File pedirCarpeta() {
-		// TODO: Pedir la carpeta usando JFileChooser
-		return null;
+		JFileChooser chooser = new JFileChooser();
+		chooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+		int ret = chooser.showOpenDialog(null);
+		if(ret == 0) {
+			return chooser.getSelectedFile();
+		}else {
+			return null;
+		}
 	}
 
 		private static String ficheros;
@@ -210,15 +216,16 @@ public class VideoPlayer extends JFrame {
 	 * 				el segundo el path donde encontrarlos.  Si no se suministran, se piden de forma interactiva. 
 	 */
 	public static void main(String[] args) {
-		// Para probar carga interactiva descomentar o comentar la línea siguiente:
-		args = new String[] { "*Pentatonix*.mp4", "test/res/" };
+		if(args == null || args.length == 0) {
+			args = new String[] { "*Pentatonix*.mp4", "test/res/" };
+		}
+		args = new String[] {};
 		if (args.length < 2) {
-			// No hay argumentos: selección manual
 			File fPath = pedirCarpeta();
 			if (fPath==null) return;
 			path = fPath.getAbsolutePath();
-			// TODO : Petición manual de ficheros con comodines (showInputDialog)
-			// ficheros = ???
+			String msg = JOptionPane.showInputDialog(null, "Escoge ficheros (entre *)");
+			ficheros = msg;
 		} else {
 			ficheros = args[0];
 			path = args[1];
